@@ -1,0 +1,62 @@
+classDiagram
+    direction TB
+
+    class ADMINISTRATEUR {
+        -int id
+        -string nom
+        -string prenom
+        -string email
+        -string motDePasse
+
+        +__construct()
+        +validerDirector() void
+        +validerFilm() void
+        +publierFilm() void
+        +ajouterGenre() void
+        +modifierGenre() void
+        +supprimerGenre() void
+        +supprimerFilm() void
+    }
+
+    class DIRECTOR {
+        -int id
+        -string nom
+        -string prenom
+        -string email
+        -date dateNaissance
+        -string photoProfil
+        -string statut
+
+        +__construct()
+        +ajouterFilm() void
+        +modifierFilm() void
+        +supprimerFilm() void
+        +modifierProfil() void
+    }
+
+    class FILM {
+        -int id
+        -string titre
+        -string description
+        -string videoUrl
+        -date dateSortie
+        -int duree
+        -string statut
+
+        +__construct()
+    }
+
+    class GENREFILM {
+        -int id
+        -string nom
+
+        +__construct()
+    }
+
+    ADMINISTRATEUR "1" --> "0..*" DIRECTOR : valide
+    ADMINISTRATEUR "1" --> "0..*" FILM : valide et publie
+    ADMINISTRATEUR "1" --> "0..*" GENREFILM : gere
+
+    DIRECTOR "1" --> "0..*" FILM : realise
+
+    GENREFILM "1" --> "0..*" FILM : contient
