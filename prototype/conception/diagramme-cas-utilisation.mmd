@@ -1,0 +1,42 @@
+usecase-beta
+
+actor Administrateur
+actor Director
+actor Visiteur
+
+    UC1("Consulter les genres")
+    UC2("Ajouter un genre")
+    UC3("Modifier un genre")
+    UC4("Supprimer un genre")
+    UC5("Valider un réalisateur")
+    UC6("Valider un film")
+    UC7("Publier un film")
+    UC8("Supprimer un film publié")
+
+    UC9("Ajouter un film")
+    UC10("Modifier un film non publié")
+    UC11("Supprimer un film non publié")
+
+    UC12("Consulter les films")
+    UC13("Rechercher un film")
+    UC14("Consulter les genres")
+
+
+Administrateur --> UC1
+Administrateur --> UC2
+Administrateur --> UC3
+Administrateur --> UC4
+Administrateur --> UC5
+Administrateur --> UC6
+Administrateur --> UC7
+Administrateur --> UC8
+
+
+Director --> UC9
+Director --> UC10
+Director --> UC11
+
+
+Visiteur --> UC12
+Visiteur --> UC13
+Visiteur --> UC14
