@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gestion des genres</title>
+
+</head>
+
+
+<body>
+
+    <!-- ================================= -->
+    <!-- HEADER -->
+    <!-- ================================= -->
+
+    <header>
+
+        <h1>Administration</h1>
+
+        <p>Gestion des genres de films</p>
+
+    </header>
+
+
+    <!-- ================================= -->
+    <!-- CONTENU PRINCIPAL -->
+    <!-- ================================= -->
+
+    <main>
+
+        <!-- =============================== -->
+        <!-- FORMULAIRE AJOUTER -->
+        <!-- =============================== -->
+
+        <section>
+
+            <h2>Ajouter un genre</h2>
+
+            <form id="genreForm">
+
+                <div>
+
+                    <label for="nom">
+                        Nom du genre
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nom"
+                        name="nom"
+                        placeholder="Exemple : Action"
+                        required
+                    >
+
+                </div>
+
+
+                <button type="submit">
+                    Ajouter
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- =============================== -->
+        <!-- LISTE DES GENRES -->
+        <!-- =============================== -->
+
+        <section>
+
+            <h2>Liste des genres</h2>
+
+            <table border="1">
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Nom</th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="genreTableBody">
+
+                    <!--
+                        JavaScript va ajouter
+                        les genres ici
+                    -->
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ================================= -->
+
+    <script src="genre.js"></script>
+
+</body>
+
+</html>
