@@ -18,20 +18,18 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         "status" => "success",
         "data" => $genres
     ]);
-
+          
     exit;
 }
 
-// Vérifier la méthode
+//POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    // Récupérer les données envoyées par le frontend
     $data = json_decode(
         file_get_contents("php://input"),
         true
     );
 
-    // Vérifier le nom
     if (!isset($data["nom"]) || empty(trim($data["nom"]))) {
 
         echo json_encode([
@@ -47,10 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         trim($data["nom"])
     );
 
-    // Ajouter le genre
     $genre->ajouter();
 
-    // Réponse
     echo json_encode([
         "status" => "success",
         "message" => "Genre ajouté avec succès"
@@ -58,3 +54,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     exit;
 }
+
+
+

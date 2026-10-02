@@ -5,9 +5,7 @@ const nomInput = document.getElementById("nom");
 const genreTableBody = document.getElementById("genreTableBody");
 
 
-// ========================================
 // GET : Afficher les genres
-// ========================================
 
 function chargerGenres() {
 
@@ -40,9 +38,7 @@ function chargerGenres() {
 }
 
 
-// ========================================
 // POST : Ajouter un genre
-// ========================================
 
 genreForm.addEventListener("submit", function(event) {
 
@@ -97,8 +93,6 @@ genreForm.addEventListener("submit", function(event) {
 });
 
 
-// ========================================
 // Charger les genres au démarrage
-// ========================================
 
 chargerGenres();

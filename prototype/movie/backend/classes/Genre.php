@@ -18,7 +18,6 @@ class Genre
             true
         );
 
-        // Générer un nouvel ID
         $newId = 1;
 
         if (!empty($genres)) {
@@ -26,16 +25,13 @@ class Genre
             $newId = max($ids) + 1;
         }
 
-        // Créer le nouveau genre
         $nouveauGenre = [
             "id" => $newId,
             "nom" => $this->nom
         ];
 
-        // Ajouter au tableau
         $genres[] = $nouveauGenre;
 
-        // Enregistrer dans JSON
         file_put_contents(
             $file,
             json_encode($genres, JSON_PRETTY_PRINT)
@@ -44,3 +40,5 @@ class Genre
         return true;
     }
 }
+
+
