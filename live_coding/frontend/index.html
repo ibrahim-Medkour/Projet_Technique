@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Document</title>
+</head>
+<body class="bg-slate-50 min-h-screen">
+
+    <header class="bg-gray-800 text-white p-6">
+
+        <div class="max-w-5xl mx-auto">
+
+            <h1 class="text-3xl font-bold">
+                Administration
+            </h1>
+
+            <p class="text-gray-300 mt-1">
+                Gestion des genres de films
+            </p>
+
+        </div>
+
+    </header>
+
+    <main class="max-w-5xl mx-auto p-6">
+
+        <section class="bg-slate-300 p-6 rounded-lg shadow mb-8">
+            <form id="genreForm">
+                
+                <label for="nom">Nom</label>
+                <input type="text" name="nom" id="nom">
+                
+                <label for="description">description</label>
+                <input type="text" name="description" id="description">
+
+                <button type="submit"  class="bg-gray-800 text-white px-5 py-2 rounded-md hover:bg-gray-700"
+">ajouter</button>
+            </form>
+        
+        </section>
+
+
+
+  <table class="w-full border-collapse" id="table_genre">
+        <thead>
+            <tr>
+                <th class="border border-gray-300 px-4 py-3 text-left">id</th>
+                <th class="border border-gray-300 px-4 py-3 text-left">nom</th>
+                <th class="border border-gray-300 px-4 py-3 text-left" >description</th>
+            </tr>
+        </thead>
+
+        <tbody id="tableBody">
+
+        </tbody>
+    </table>
+</main>
+    
+
+   <script src="genre.js"></script>
+
+</body>
+</html> 

@@ -45,8 +45,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         trim($data["nom"])
     );
 
+    // Ajouter le genre
     $genre->ajouter();
 
+    // Réponse
     echo json_encode([
         "status" => "success",
         "message" => "Genre ajouté avec succès"
