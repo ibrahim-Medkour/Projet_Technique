@@ -4,6 +4,21 @@ const genreForm = document.getElementById("genreForm");
 const nomInput = document.getElementById("nom");
 const genreTableBody = document.getElementById("genreTableBody");
 
+const btnSubmit = document.getElementById('btn-submit-form');
+
+
+
+
+function setLoadingState(isLoading) {
+    btnSubmit.disabled = isLoading;
+
+    if (isLoading) {
+        btnSubmit.textContent = 'Enregistrement...';
+    } else {
+        btnSubmit.textContent = 'Enregistrer';
+    }
+}
+
 
 // GET : Afficher les genres
 
@@ -41,6 +56,8 @@ function chargerGenres() {
 // POST : Ajouter un genre
 
 genreForm.addEventListener("submit", function(event) {
+    // 1. Afficher le chargement
+    setLoadingState(true);
 
     event.preventDefault();
 
@@ -88,8 +105,13 @@ genreForm.addEventListener("submit", function(event) {
 
         console.error("Erreur :", error);
 
-    });
+    })
 
+ // 7. Toujours terminer le chargement
+    .finally(() => {
+        setLoadingState(false);
+    });
+  
 });
 
 
