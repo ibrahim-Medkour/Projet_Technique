@@ -1,4 +1,4 @@
-const API_URL = "../backend/api/genre-api.php";
+const API_URL = "../backend/ap/genre-api.php";
 
 const genreForm = document.getElementById("genreForm");
 const nomInput = document.getElementById("nom");
@@ -7,7 +7,20 @@ const genreTableBody = document.getElementById("genreTableBody");
 const btnSubmit = document.getElementById('btn-submit-form');
 
 
+function showToast(message, type = 'success') {
+    const container = document.getElementById('toast-container');
 
+    const toast = document.createElement('div');
+
+    toast.className = `toast toast-${type}`;
+    toast.textContent = message;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
+}
 
 function setLoadingState(isLoading) {
     btnSubmit.disabled = isLoading;
@@ -83,25 +96,22 @@ genreForm.addEventListener("submit", function(event) {
 
     .then(result => {
 
-        console.log(result);
+        showToast(
+        "Catégorie enregistrée avec succès !",
+        "success"
+    );
 
-
-        if (result.status === "success") {
-
-            // Vider input
-            nomInput.value = "";
-
-            // Actualiser la liste
-            chargerGenres();
-
-        } else {
-
-            alert(result.message);
-        }
+    genreForm.reset();
+    chargerGenres();
 
     })
 
     .catch(error => {
+
+        showToast(
+        "Erreur lors de l'enregistrement",
+        "error"
+    );
 
         console.error("Erreur :", error);
 
