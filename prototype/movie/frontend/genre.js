@@ -1,10 +1,11 @@
-const API_URL = "../backend/ap/genre-api.php";
+const API_URL = "../backend/api/genre-api.php";
 
 const genreForm = document.getElementById("genreForm");
 const nomInput = document.getElementById("nom");
 const genreTableBody = document.getElementById("genreTableBody");
 
 const btnSubmit = document.getElementById('btn-submit-form');
+const message = document.getElementById('message');
 
 
 function showToast(message, type = 'success') {
@@ -66,6 +67,7 @@ function chargerGenres() {
 }
 
 
+
 // POST : Ajouter un genre
 
 genreForm.addEventListener("submit", function(event) {
@@ -95,14 +97,20 @@ genreForm.addEventListener("submit", function(event) {
     .then(response => response.json())
 
     .then(result => {
+        
+        message.textContent =
+            'Categorie ajoutee avec succes : ' + result.message;
+
 
         showToast(
         "Catégorie enregistrée avec succès !",
         "success"
+    
     );
 
     genreForm.reset();
     chargerGenres();
+   
 
     })
 
