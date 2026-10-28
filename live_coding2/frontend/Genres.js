@@ -66,9 +66,7 @@ genreForm.addEventListener("submit", function (event) {
                genreForm.reset();
                 chargerGenres();
            
-        })
-
-      
+        }) 
 
 });
 

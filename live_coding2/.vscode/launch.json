@@ -1,0 +1,13 @@
+
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Open index.html",
+            "url": "http://localhost:3000/frontend/index.html"
+        }
+    ]
+}
