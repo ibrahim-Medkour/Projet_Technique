@@ -12,7 +12,6 @@ $method = $_SERVER['REQUEST_METHOD'];
 if ($method === 'GET') {
     echo json_encode(
         $gestion->lister(),
-        JSON_UNESCAPED_UNICODE
     );
     exit;
 }

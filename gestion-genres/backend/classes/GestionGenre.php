@@ -34,9 +34,7 @@ class GestionGenre
             ];
 
           // 4. Convertir le tableau PHP en JSON
-            $nouveauContenu = json_encode(
-                $genres,
-            );
+            $nouveauContenu = json_encode($genres);
 
             // 5. Vérifier la conversion JSON
             if ($nouveauContenu === false) {

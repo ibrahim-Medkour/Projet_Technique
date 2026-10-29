@@ -8,6 +8,7 @@ const descriptionInput = document.getElementById("Description");
 const genreTableBody = document.getElementById("genreTableBody");
 
 const btnSubmit = document.getElementById("btn-submit-form");
+const message = document.getElementById('message');
 
 function setLoadingState(isLoading) {
     btnSubmit.disabled = isLoading;
@@ -16,6 +17,23 @@ function setLoadingState(isLoading) {
     } else {
         btnSubmit.textContent = "Enregistrer";
     }
+}
+
+
+
+function showToast(message, type = 'success') {
+    const container = document.getElementById('toast-container');
+
+    const toast = document.createElement('div');
+
+    toast.className = `toast toast-${type}`;
+    toast.textContent = message;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
 }
 
 // 1. Charger les genres
@@ -62,9 +80,9 @@ genreForm.addEventListener("submit", function (event) {
     // Vérifier les champs
     if (data.nom === "" || data.description === "") {
         alert("3afak 3emmer les champs kamlin.");
-        return;
+
     }
-    
+
     fetch(API_URL, {
         method: "POST",
         headers: {
@@ -87,6 +105,11 @@ genreForm.addEventListener("submit", function (event) {
             return response.json();
         })
         .then((result) => {
+            showToast(
+                "Catégorie enregistrée avec succès !",
+                "success"
+
+            );
             console.log(result);
 
             if (result.success) {
@@ -97,6 +120,10 @@ genreForm.addEventListener("submit", function (event) {
             }
         })
         .catch((error) => {
+            showToast(
+                "Erreur lors de l'enregistrement",
+                "error"
+            );
             console.error("Erreur lors de l'ajout du genre :", error);
         })
 
