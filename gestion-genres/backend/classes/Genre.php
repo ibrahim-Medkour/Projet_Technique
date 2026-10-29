@@ -13,7 +13,7 @@ class Genre{
     }
 
 
-    public function __get($name)
+    public function getNom()
     {
         $this->nom;
     }
