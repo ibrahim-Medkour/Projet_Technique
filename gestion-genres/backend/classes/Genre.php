@@ -5,7 +5,7 @@ class Genre{
     private string $nom;
     private string $description;
 
-    public function __construct(string $nom,string $description)
+    public function __construct(string $nom , string $description)
     {
        $this->nom=$nom;
        $this->description=$description;
@@ -15,7 +15,7 @@ class Genre{
 
     public function getNom()
     {
-        $this->nom;
+        return $this->nom;
     }
 
     public function getDescription(): string{

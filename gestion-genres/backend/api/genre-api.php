@@ -1,99 +1,81 @@
+
 <?php
 
-// require_once __DIR__ . '/../classes/Genre.php';
-// require_once __DIR__ . '/../classes/GestionGenre.php';
+require_once __DIR__ . '/../classes/Genre.php';
+require_once __DIR__ . '/../classes/GestionGenre.php';
 
-// header('Content-Type: application/json; charset=utf-8');
+$gestion = new GestionGenre();
 
-// $method = $_SERVER['REQUEST_METHOD'];
+$method = $_SERVER['REQUEST_METHOD'];
 
-// // GET : récupérer les genres
-// if ($method === 'GET') {
+// 1. GET : Lister les genres
+if ($method === 'GET') {
+    echo json_encode(
+        $gestion->lister(),
+        JSON_UNESCAPED_UNICODE
+    );
+    exit;
+}
 
-//     $file = __DIR__ . '/../data/genres.json';
+// 2. POST : Ajouter un genre
+if ($method === 'POST') {
 
-//     $contenu = file_get_contents($file);
+    // Lire les données envoyées par fetch()
+    $contenu = file_get_contents('php://input');
 
-//     if ($contenu === false) {
-//         http_response_code(500);
+    // Convertir JSON vers tableau PHP
+    $data = json_decode($contenu, true);
 
-//         echo json_encode([
-//             'status' => 'error',
-//             'message' => 'Impossible de lire le fichier JSON'
-//         ]);
+    // Vérifier les données reçues
+    if (
+        !is_array($data) ||
+        !isset($data['nom'], $data['description']) ||
+        !is_string($data['nom']) ||
+        !is_string($data['description']) ||
+        trim($data['nom']) === '' ||
+        trim($data['description']) === ''
+    ) {
+        http_response_code(400);
 
-//         exit;
-//     }
+        echo json_encode([
+            'success' => false,
+            'message' => 'Nom et description obligatoires'
+        ]);
 
-//     $genres = json_decode($contenu, true);
+        exit;
+    }
 
-//     if (!is_array($genres)) {
-//         http_response_code(500);
+    // Créer un objet Genre
+    $genre = new Genre(
+        trim($data['nom']),
+        trim($data['description'])
+    );
 
-//         echo json_encode([
-//             'status' => 'error',
-//             'message' => 'Le fichier JSON est invalide'
-//         ]);
+    // Envoyer l'objet à GestionGenre
+    $succes = $gestion->ajouter($genre);
 
-//         exit;
-//     }
+    // Envoyer la réponse au frontend
+    if ($succes) {
+        echo json_encode([
+            'success' => true,
+            'message' => 'Genre ajouté avec succès'
+        ]);
+    } else {
+        http_response_code(500);
 
-//     echo json_encode([
-//         'status' => 'success',
-//         'data' => $genres
-//     ]);
+        echo json_encode([
+            'success' => false,
+            'message' => "Erreur lors de l'ajout du genre"
+        ]);
+    }
 
-//     exit;
-// }
+    exit;
+}
 
-// // POST : ajouter un genre
-// if ($method === 'POST') {
+// 3. Autres méthodes HTTP non autorisées
+http_response_code(405);
 
-//     $contenu = file_get_contents('php://input');
-//     $data = json_decode($contenu, true);
-
-//     if (
-        // !is_array($data) ||
-        // !isset($data['nom'], $data['description']) ||
-        // !is_string($data['nom']) ||
-        // !is_string($data['description']) ||
-//         trim($data['nom']) === ''
-//     ) {
-//         http_response_code(400);
-
-//         echo json_encode([
-//             'status' => 'error',
-//             'message' => 'Le nom et la description sont requis'
-//         ]);
-
-//         exit;
-//     }
-
-//     $genre = new Genre(
-//         $data['nom'],
-//         $data['description']
-//     );
-
-//     $gestion = new GestionGenre();
-
-//     $succes = $gestion->ajouter($genre);
-
-//     if (!$succes) {
-//         http_response_code(500);
-
-//         echo json_encode([
-//             'status' => 'error',
-//             'message' => "Erreur lors de l'ajout du genre"
-//         ]);
-
-//         exit;
-//     }
-
-//     echo json_encode([
-//         'status' => 'success',
-//         'message' => 'Le genre a été ajouté avec succès'
-//     ]);
-
-//     exit;
-// }
-
+echo json_encode([
+    'success' => false,
+    'message' => 'Méthode HTTP non autorisée'
+]);
