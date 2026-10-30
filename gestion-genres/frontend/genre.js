@@ -8,7 +8,7 @@ const descriptionInput = document.getElementById("Description");
 const genreTableBody = document.getElementById("genreTableBody");
 
 const btnSubmit = document.getElementById("btn-submit-form");
-const message = document.getElementById('message');
+
 
 function setLoadingState(isLoading) {
     btnSubmit.disabled = isLoading;
@@ -26,9 +26,21 @@ function showToast(message, type = 'success') {
 
     const toast = document.createElement('div');
 
-    toast.className = `toast toast-${type}`;
-    toast.textContent = message;
+     const colors = type === 'success'
+        ? 'bg-green-100 text-green-800 border-green-500'
+        : 'bg-red-100 text-red-800 border-red-500';
 
+    toast.className = `
+        ${colors}
+        border-l-4
+        p-4
+        mb-3
+        rounded-lg
+        shadow-md
+        text-sm
+        font-medium
+    `;
+    toast.textContent = message;
     container.appendChild(toast);
 
     setTimeout(() => {
