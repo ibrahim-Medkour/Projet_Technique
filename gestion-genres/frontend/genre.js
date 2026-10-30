@@ -26,7 +26,7 @@ function showToast(message, type = 'success') {
 
     const toast = document.createElement('div');
 
-     const colors = type === 'success'
+    const colors = type === 'success'
         ? 'bg-green-100 text-green-800 border-green-500'
         : 'bg-red-100 text-red-800 border-red-500';
 
@@ -81,7 +81,7 @@ function chargerGenres() {
 // 2. Ajouter un genre
 genreForm.addEventListener("submit", function (event) {
     event.preventDefault();
-    setLoadingState(true);
+
 
 
     const data = {
@@ -89,12 +89,12 @@ genreForm.addEventListener("submit", function (event) {
         description: descriptionInput.value.trim(),
     };
 
-    // Vérifier les champs
-    if (data.nom === "" || data.description === "") {
-        alert("3afak 3emmer les champs kamlin.");
 
+    if (!data.nom || !data.description) {
+        showToast('Veuillez remplir tous les champs', 'error');
+        return;
     }
-
+    setLoadingState(true);
     fetch(API_URL, {
         method: "POST",
         headers: {
