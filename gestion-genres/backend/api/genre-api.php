@@ -19,13 +19,10 @@ if ($method === 'GET') {
 // 2. POST : Ajouter un genre
 if ($method === 'POST') {
 
-    // Lire les données envoyées par fetch()
     $contenu = file_get_contents('php://input');
 
-    // Convertir JSON vers tableau PHP
     $data = json_decode($contenu, true);
 
-    // Vérifier les données reçues
     if (
         !is_array($data) ||
         !isset($data['nom'], $data['description']) ||
@@ -44,16 +41,14 @@ if ($method === 'POST') {
         exit;
     }
 
-    // Créer un objet Genre
+    //objet Genre
     $genre = new Genre(
         trim($data['nom']),
         trim($data['description'])
     );
 
-    // Envoyer l'objet à GestionGenre
     $succes = $gestion->ajouter($genre);
 
-    // Envoyer la réponse au frontend
     if ($succes) {
         echo json_encode([
             'success' => true,
@@ -71,10 +66,9 @@ if ($method === 'POST') {
     exit;
 }
 
-// 3. Autres méthodes HTTP non autorisées
-http_response_code(405);
+// http_response_code(405);
 
-echo json_encode([
-    'success' => false,
-    'message' => 'Méthode HTTP non autorisée'
-]);
+// echo json_encode([
+//     'success' => false,
+//     'message' => 'Méthode HTTP non autorisée'
+// ]);

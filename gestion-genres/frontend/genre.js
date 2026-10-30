@@ -139,11 +139,9 @@ genreForm.addEventListener("submit", function (event) {
             console.error("Erreur lors de l'ajout du genre :", error);
         })
 
-        // 7. Toujours terminer le chargement
         .finally(() => {
             setLoadingState(false);
         });
 });
 
-// 3. Charger les genres au démarrage
 chargerGenres();

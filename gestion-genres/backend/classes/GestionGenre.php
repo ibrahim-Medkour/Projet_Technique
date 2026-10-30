@@ -26,22 +26,18 @@ class GestionGenre
                 $newId = max($ids) + 1;
             }
 
-            // 3. Ajouter le nouveau genre au tableau
             $genres[] = [
                 'id' => $newId,
                 'nom' => $genre->getNom(),
                 'description' => $genre->getDescription()
             ];
 
-          // 4. Convertir le tableau PHP en JSON
             $nouveauContenu = json_encode($genres);
 
-            // 5. Vérifier la conversion JSON
             if ($nouveauContenu === false) {
                 return false;
             }
 
-            // 6. Enregistrer dans le fichier JSON
             return file_put_contents(
                 self::$dataFile,
                 $nouveauContenu
