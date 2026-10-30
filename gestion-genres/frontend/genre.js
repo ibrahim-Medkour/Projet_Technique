@@ -117,14 +117,15 @@ genreForm.addEventListener("submit", function (event) {
             return response.json();
         })
         .then((result) => {
-            showToast(
-                "Catégorie enregistrée avec succès !",
-                "success"
-
-            );
+        
             console.log(result);
 
             if (result.success) {
+                showToast(
+                    "Catégorie enregistrée avec succès !",
+                    "success"
+                );
+
                 genreForm.reset();
                 chargerGenres();
             } else {
