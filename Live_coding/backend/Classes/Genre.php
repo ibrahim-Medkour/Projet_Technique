@@ -9,29 +9,12 @@ class Genre{
 
     }
 
-    public function Ajouter(){
-       $file=__DIR__ ."/../data/genres.json"; 
+    public function getNom(): string {
+        return $this->nom;
+    }
 
-       $genres=json_decode(file_get_contents($file),true);
-
-
-       $newId=1;
-
-        if(!empty($genres)){
-           $ids=array_column($genres,"id");
-           $newId=max($ids)+1;
-        }
-
-        $newGenre=[
-            "id"=>$newId,
-            "nom"=>$this->nom,
-            "description"=>$this->description
-        ];
-        
-        $genres[] = $newGenre;
-
-        file_put_contents($file, json_encode($genres)) ;
-
+    public function getDescription(): string {
+        return $this->description;
     }
 
 }

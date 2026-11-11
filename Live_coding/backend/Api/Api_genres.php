@@ -1,17 +1,19 @@
 <?php
 
 require_once "../Classes/Genre.php";
+require_once "../Classes/GenreManager.php";
+
 
 if($_SERVER['REQUEST_METHOD']==="GET"){
 
-    $file = __DIR__ ."/../data/genres.json"; 
+    $file = __DIR__ ."/../data/genres.json";
     $genres=json_decode(file_get_contents($file),true);
 
     echo json_encode([
         "status"=>"sucesses",
         "data"=>$genres
     ]);
-   
+
     exit;
 }
 
@@ -24,7 +26,8 @@ if($_SERVER['REQUEST_METHOD']==="POST"){
         $data["description"]
     );
 
-    $genre->Ajouter();
+    $manager = new GenreManager();
+    $manager->Ajouter($genre);
 
     echo json_encode([
         "status"=>"sucesses",
