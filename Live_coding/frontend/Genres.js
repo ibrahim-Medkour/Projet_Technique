@@ -1,4 +1,4 @@
-const API_URL = "../backend/api/Api_genres.php";
+const API_URL = "../backend/Api/Api_genres.php";
 
 const genreForm = document.getElementById("genreForm");
 const nomInput = document.getElementById("Genre");
