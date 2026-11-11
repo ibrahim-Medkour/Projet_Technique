@@ -9,10 +9,9 @@ if($_SERVER['REQUEST_METHOD']==="GET"){
     $file = __DIR__ ."/../data/genres.json";
     $genres=json_decode(file_get_contents($file),true);
 
-    echo json_encode([
-        "status"=>"sucesses",
-        "data"=>$genres
-    ]);
+    echo json_encode(
+        $genres
+    );
 
     exit;
 }

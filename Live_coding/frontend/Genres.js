@@ -55,7 +55,7 @@ function chargerGenres() {
 
             genreTableBody.innerHTML = "";
 
-            result.data.forEach(genre => {
+            result.forEach(genre => {
 
                 const ligne = document.createElement("tr");
 
