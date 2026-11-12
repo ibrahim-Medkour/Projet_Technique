@@ -18,7 +18,7 @@ class GenreDAO
 
     public function add(Genre $genre):void
     {
-        $genres = $this->getALL();
+        $genres = $this->getAll();
         $newId = 1;
 
         if (!empty($genres)) {
@@ -36,9 +36,8 @@ class GenreDAO
 
 
 
-        if(file_put_contents($this->file, json_encode($genres))===false) {
-            throw new RuntimeException("Impossible de sauvegarder les données");
-        }
+        file_put_contents($this->file, json_encode($genres));
+        
     }
 
 }

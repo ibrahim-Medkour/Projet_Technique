@@ -26,9 +26,9 @@ class GenreService extends BaseService
     $nom = trim($data['nome'] ?? '');
     $description = trim($data['description'] ?? '');
 
-    if ($nom === '') {
+    if ($nom === '' ||$description==='' ) {
         throw new InvalidArgumentException(
-            "Le nom est obligatoire"
+            "Le deux champs est obligatoire"
         );
     }
 

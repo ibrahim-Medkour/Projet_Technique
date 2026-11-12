@@ -6,13 +6,9 @@
         "**/.jj": true,
         "**/.DS_Store": true,
         "**/Thumbs.db": true,
-        "prototype": true,
-        "README.md": true,
         ".vscode": true
     },
     "hide-files.files": [
-        "prototype",
-        "README.md",
         ".vscode"
     ]
 }

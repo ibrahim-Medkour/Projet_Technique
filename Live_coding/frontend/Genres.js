@@ -116,19 +116,19 @@ genreForm.addEventListener("submit", function (event) {
 
         .then(result => {
             if (!result.success) {
-        showToast(result.message, "error");
-        return;
-    }
+                showToast(result.message, "error");
+                return;
+            }
 
-    showToast(result.message, "success");
+            showToast(result.message, "success");
             genreForm.reset();
             chargerGenres();
 
         })
         .catch(error => {
-    console.error("Erreur :", error);
-    showToast("Une erreur est survenue", "error");
-})
+            console.error("Erreur :", error);
+            showToast("Une erreur est survenue", "error");
+        })
 
         // 7. Toujours terminer le chargement
         .finally(() => {
