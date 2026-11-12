@@ -19,16 +19,25 @@ class GenreController
         echo json_encode($genres);
     }
 
-    public function add(): void
+   public function add(): void
     {
-        $data = json_decode(file_get_contents("php://input"), true);
+        try {
+            $data = json_decode(file_get_contents("php://input"), true);
 
-        $this->genreService->add($data);
+            $this->genreService->add($data);
 
-        echo json_encode([
-            "status" => "success",
-            "message" => "Le genre a été ajouté"
-        ]);
+            echo json_encode([
+                "success" => true,
+                "message" => "Genre ajouté avec succès"
+            ]);
+
+        } catch (Exception $e) {
+
+            echo json_encode([
+                "success" => false,
+                "message" => $e->getMessage()
+            ]);
+        }
     }
 
     public function handleRequest(): void

@@ -85,13 +85,13 @@ genreForm.addEventListener("submit", function (event) {
         description: descriptionInput.value
     };
 
-    if (!data.nome || !data.description) {
-        showToast(
-            "Erreur lors de l'enregistrement",
-            "error"
-        );
-        return;
-    }
+    // if (!data.nome || !data.description) {
+    //     showToast(
+    //         "Erreur lors de l'enregistrement",
+    //         "error"
+    //     );
+    //     return;
+    // }
 
     // 1. Afficher le chargement
     setLoadingState(true);
@@ -115,16 +115,20 @@ genreForm.addEventListener("submit", function (event) {
         .then(response => response.json())
 
         .then(result => {
-            showToast(
-                "Catégorie enregistrée avec succès !",
-                "success"
+            if (!result.success) {
+        showToast(result.message, "error");
+        return;
+    }
 
-            );
-            console.log(result);
+    showToast(result.message, "success");
             genreForm.reset();
             chargerGenres();
 
         })
+        .catch(error => {
+    console.error("Erreur :", error);
+    showToast("Une erreur est survenue", "error");
+})
 
         // 7. Toujours terminer le chargement
         .finally(() => {
