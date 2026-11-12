@@ -1,22 +1,24 @@
-
 <?php
+
+require_once __DIR__ . "/../Classes/Genre.php";
 
 class GenreDAO
 {
     private string $file = __DIR__ . '/../data/genres.json';
-
-    public function getAll(): array
+    public function getALL(): array
     {
-        $content = file_get_contents($this->file);
 
-        return json_decode($content, true) ?? [];
+        $content = file_get_contents($this->file);
+        if ($content === false) {
+            throw new RuntimeException("Impossible de lire le fichier JSON");
+        }
+        return json_decode($content, true);
+
     }
 
-
-    public function add(Genre $genre): void
+    public function add(Genre $genre):void
     {
-        $genres = $this->getAll();
-
+        $genres = $this->getALL();
         $newId = 1;
 
         if (!empty($genres)) {
@@ -32,7 +34,13 @@ class GenreDAO
 
         $genres[] = $newGenre;
 
-        file_put_contents($this->file, json_encode($genres));
+
+
+        if(file_put_contents($this->file, json_encode($genres))===false) {
+            throw new RuntimeException("Impossible de sauvegarder les données");
+        }
     }
 
 }
+
+

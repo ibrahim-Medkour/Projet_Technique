@@ -3,7 +3,8 @@
 
 require_once __DIR__ . '/BaseService.php';
 require_once __DIR__ . '/../DAO/GenreDAO.php';
-require_once __DIR__ . '/../Classes/Genre.php';
+require_once __DIR__ . "/../Classes/Genre.php";
+
 
 
 class GenreService extends BaseService
@@ -22,10 +23,16 @@ class GenreService extends BaseService
 
     public function add(array $data): void
 {
-    $genre = new Genre(
-        $data['nome'],
-        $data['description']
-    );
+    $nom = trim($data['nome'] ?? '');
+    $description = trim($data['description'] ?? '');
+
+    if ($nom === '') {
+        throw new InvalidArgumentException(
+            "Le nom est obligatoire"
+        );
+    }
+
+    $genre = new Genre($nom, $description);
 
     $this->genreDAO->add($genre);
 }
