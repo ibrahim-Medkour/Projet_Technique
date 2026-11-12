@@ -33,5 +33,4 @@ if($_SERVER['REQUEST_METHOD']==="POST"){
         "message"=>"le genre et ajouter"
     ]);
     exit;
-
-}
+} 
